@@ -6,7 +6,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _timeBetweenShoots;
     [SerializeField] private Transform _target;
 
@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
             var Bullet = Instantiate(_bulletPrefab, transform.position + direction, Quaternion.identity);
 
             Bullet.GetComponent<Rigidbody>().transform.up = direction;
-            Bullet.GetComponent<Rigidbody>().velocity = direction * _speed;
+            Bullet.GetComponent<Rigidbody>().velocity = direction * _bulletSpeed;
 
             yield return new WaitForSeconds(_timeBetweenShoots);
         }

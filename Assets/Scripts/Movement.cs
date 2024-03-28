@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Transform _waypoint;
+    [SerializeField] private Transform _waypointsParent;
     [SerializeField] private float _speed;
     
     private int _waypointIndex;
@@ -10,10 +10,10 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        _waypoints = new Transform[_waypoint.childCount];
+        _waypoints = new Transform[_waypointsParent.childCount];
 
-        for (int i = 0; i < _waypoint.childCount; i++)
-            _waypoints[i] = _waypoint.GetChild(i);
+        for (int i = 0; i < _waypointsParent.childCount; i++)
+            _waypoints[i] = _waypointsParent.GetChild(i);
     }
 
     private void Update()
