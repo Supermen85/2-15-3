@@ -6,9 +6,9 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private float _timeBetweenShoots;
     [SerializeField] private Transform _target;
+    [SerializeField] private float _bulletSpeed = 20f;
+    [SerializeField] private float _timeBetweenShoots = 2f;
 
     private void Start()
     {

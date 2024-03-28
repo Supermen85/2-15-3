@@ -3,7 +3,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Transform _waypointsParent;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 5f;
     
     private int _waypointIndex;
     private Transform[] _waypoints;
@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
             ChangeWaypoint();
     }
 
-    private Vector3 ChangeWaypoint()
+    private void ChangeWaypoint()
     {
         _waypointIndex++;
 
@@ -36,7 +36,5 @@ public class Movement : MonoBehaviour
         Vector3 position = _waypoints[_waypointIndex].transform.position;
 
         transform.forward = position - transform.position;
-
-        return position;
     }
 }
