@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _target;
-    [SerializeField] private float _bulletSpeed = 20f;
     [SerializeField] private float _timeBetweenShoots = 2f;
 
     private void Start()
@@ -17,17 +16,19 @@ public class Shooting : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        bool isRunning = enabled;
+        var pause = new WaitForSeconds(_timeBetweenShoots);
+        bool isRunning = true;
 
         while (isRunning)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
-            var Bullet = Instantiate(_bulletPrefab, transform.position + direction, Quaternion.identity);
+            
+            Bullet bullet = Instantiate(_bulletPrefab, transform.position + direction, Quaternion.identity);
 
-            Bullet.GetComponent<Rigidbody>().transform.up = direction;
-            Bullet.GetComponent<Rigidbody>().velocity = direction * _bulletSpeed;
+            bullet.SetDirection(direction);
+            bullet.Move();
 
-            yield return new WaitForSeconds(_timeBetweenShoots);
+            yield return pause;
         }
     }
 }
